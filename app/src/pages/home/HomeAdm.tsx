@@ -1,4 +1,4 @@
-import { Box, Button, Grid, TextField, Typography, FormControl, InputLabel, Select, MenuItem } from "@mui/material";
+import { Box, Button, Stack, TextField, Typography, FormControl, InputLabel, Select, MenuItem } from "@mui/material";
 import { useEffect, useState } from "react";
 import { SelectChangeEvent } from "@mui/material/Select";
 
@@ -15,7 +15,7 @@ const HomeAdm = () => {
 
   useEffect(() => {
    //requisiçãoAPI obter todos os médicos
-    setDoctors(['Médico 1 (Cardiologista)', 'Médico 2 (Urologista)', 'Médico 3 (Endócrinologista)']);
+    setDoctors(['Médico 4 (Cardiologista)', 'Médico 2 (Urologista)', 'Médico 3 (Endócrinologista)', 'Médico 4 (Endócrinologista)']);
   }, []);
 
   useEffect(() => {
@@ -39,43 +39,36 @@ const HomeAdm = () => {
 
   return (
     <Box sx={{ mt: 4 }}>
-      <Grid container spacing={2}>
-        <Grid item xs={12} md={6}>
-          <TextField
-            fullWidth
-            label="Nome do médico"
-            variant="outlined"
-            value={nameFilter}
-            onChange={handleChangeNameFilter}
-          />
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <FormControl fullWidth variant="outlined">
-            <InputLabel>Especialidade</InputLabel>
-            <Select
-              value={specialtyFilter}
-              onChange={handleChangeSpecialtyFilter}
-              label="Especialidade"
-            >
-              <MenuItem value="">Selecione</MenuItem>
-              <MenuItem value="cardiologista">Cardiologista</MenuItem>
-              <MenuItem value="urologista">Urologista</MenuItem>
-              <MenuItem value="endócrinologista">Endócrinologista</MenuItem>
-            </Select>
-          </FormControl>
-        </Grid>
-        <Grid item xs={12}>
-          <Button variant="contained">Filtrar</Button>
-        </Grid>
-      </Grid>
-      <Box sx={{ mt: 4 }}>
+      <Stack spacing={2} sx={{ justifyContent: 'center', flexDirection: {xs: 'column', sm: 'row'}, alignItems: 'center' }}>
+        <TextField
+          fullWidth
+          label="Nome do médico"
+          variant="outlined"
+          value={nameFilter}
+          onChange={handleChangeNameFilter}
+        />
+        <FormControl fullWidth variant="outlined">
+          <InputLabel>Especialidade</InputLabel>
+          <Select
+            value={specialtyFilter}
+            onChange={handleChangeSpecialtyFilter}
+            label="Especialidade"
+          >
+            <MenuItem value="">Selecione</MenuItem>
+            <MenuItem value="cardiologista">Cardiologista</MenuItem>
+            <MenuItem value="urologista">Urologista</MenuItem>
+            <MenuItem value="endócrinologista">Endócrinologista</MenuItem>
+          </Select>
+        </FormControl>
+      </Stack>
+      <Box sx={{ mt: 4, justifyContent: "center" }}>
         {filteredDoctors.map(doctor => (
-            <>
-          <Typography key={doctor} variant="h6">
-            {doctor}
-          </Typography>
-           <Button variant="contained">Agenda</Button>
-            </>
+          <>
+            <Typography key={doctor} variant="h6">
+              {doctor}
+            </Typography>
+            <Button variant="contained">Agenda</Button>
+          </>
         ))}
       </Box>
     </Box>
