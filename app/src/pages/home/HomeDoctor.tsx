@@ -13,7 +13,7 @@ const DAY: string = now.getDate().toString().padStart(2, "0");
 const MONTH: string = (now.getMonth() + 1).toString().padStart(2, "0");
 const YEAR: string = now.getFullYear().toString();
 
-export default function Home() {
+export default function HomeDoctor() {
   const [appointments, setAppointments] = useState<Schedule[]>([]);
   const {userName} = useAuth()
 

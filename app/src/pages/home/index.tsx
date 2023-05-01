@@ -1,4 +1,5 @@
-import Home from "./home";
+import HomeAdm from "./HomeAdm";
+// import HomeDoctor from "./HomeDoctor";
 
 
 
@@ -7,7 +8,7 @@ import Home from "./home";
 export default function MyApp() {
   return (
     <>
-     <Home />
+     <HomeAdm />
     </>
   )
 }
