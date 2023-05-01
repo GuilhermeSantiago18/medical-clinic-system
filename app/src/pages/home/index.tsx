@@ -1,4 +1,5 @@
-import LoginForm from "./login/LoginForm";
+import Home from "./home";
+
 
 
 
@@ -6,7 +7,7 @@ import LoginForm from "./login/LoginForm";
 export default function MyApp() {
   return (
     <>
-     <LoginForm />
+     <Home />
     </>
   )
 }

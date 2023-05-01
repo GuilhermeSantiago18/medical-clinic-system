@@ -1,7 +1,10 @@
 import { Box, Button, Grid, TextField, Typography } from "@mui/material";
 import { useForm } from "react-hook-form";
-import imgCardioCentro from "src/images/cardiocentro.png"
-import Image from "next/image"
+import imgCardioCentro from "src/images/cardiocentro.png";
+import Image from "next/image";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import { useAuth } from "../../context/AuthContext";
 
 type FormValues = {
   email: string;
@@ -9,15 +12,32 @@ type FormValues = {
 };
 
 const LoginForm = () => {
+  const router = useRouter();
+  const [session, setSession] = useState(false);
+  const { setUserName } = useAuth();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormValues>();
-
-  const onSubmit = (data: FormValues) => {
-    console.log(data);
+  const onSubmit = async (data: FormValues) => {
+    console.log(data.email);
+    try {
+      setUserName(data.email);
+      setSession(true);
+      // const response = await signIn("email", {
+      //   email: data.email,
+      //   password: data.password,
+      // });
+    } catch (error) {
+      console.error(error);
+    }
   };
+  useEffect(() => {
+    if (session) {
+      router.push("/home");
+    }
+  }, [router, session]);
 
   return (
     <Grid
@@ -26,9 +46,9 @@ const LoginForm = () => {
       direction="column"
       alignItems="center"
       justifyContent="center"
-      minHeight="100vh"
+      minHeight="80vh"
     >
-      <Image src={imgCardioCentro} alt="Cardio Centro" />
+      <Image src={imgCardioCentro} alt="Cardio-Centro" />
 
       <Grid item>
         <TextField
@@ -42,7 +62,7 @@ const LoginForm = () => {
 
       <Grid item>
         <TextField
-          label="Password"
+          label="Senha"
           type="password"
           variant="outlined"
           placeholder="Digite sua senha"
