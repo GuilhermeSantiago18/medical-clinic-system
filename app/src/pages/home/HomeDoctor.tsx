@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from "@mui/material";
 import { useAuth } from "../../context/AuthContext"
+import ScheduleTable from "@/components/ScheduleTable";
 
 interface Schedule {
   time: string;
@@ -43,26 +43,7 @@ export default function HomeDoctor() {
     <div>
       <h1>Bem-vindo, {userName}!</h1>
       <h2>Agendamentos do dia:{`${DAY}/${MONTH}/${YEAR}`}</h2>
-      <TableContainer component={Paper}>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell>Hora</TableCell>
-              <TableCell>Paciente</TableCell>
-              <TableCell>Motivo</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {appointments.map((appointment) => (
-              <TableRow key={appointment.time}>
-                <TableCell>{appointment.time}</TableCell>
-                <TableCell>{appointment.patient}</TableCell>
-                <TableCell>{appointment.reason}</TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+      <ScheduleTable appointments={appointments} />
     </div>
   );
 }

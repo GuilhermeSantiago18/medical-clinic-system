@@ -1,7 +1,7 @@
 import dayjs from "dayjs";
-import { IAppointment } from "./IAppointment";
+import { IAppointment } from "./interface/IAppointment";
 
-export default async function getDoctorAppointments(dateStr: Date): Promise<IAppointment[]> {
+export default async function getDoctorAppointments(): Promise<IAppointment[]> {
   const date = dayjs("10/05/2023", 'DD/MM/YYYY').toDate(); 
   const date2 = dayjs("11/05/2023", 'DD/MM/YYYY').toDate(); 
   const appointments: IAppointment[] = [

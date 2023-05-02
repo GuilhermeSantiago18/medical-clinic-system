@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { Paper, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
-import { IAppointment } from "./IAppointment";
+import { Stack } from "@mui/material";
+import { IAppointment } from "./interface/IAppointment";
 import getDoctorAppointments from "./mock";
 import ScheduleTable from "@/components/ScheduleTable";
 
@@ -14,7 +14,7 @@ export default function DoctorCalendly() {
   const handleDateChange = async (date: Date | null) => {
     setSelectedDate(date);
     if (date) {
-      const getAppointments = await getDoctorAppointments(date);
+      const getAppointments = await getDoctorAppointments();
      const filterByDateAppointments = getAppointments.filter(appointment => appointment.date.toISOString().slice(0,10) === date.toISOString().slice(0,10))
      console.log(filterByDateAppointments)
       setAppointments(filterByDateAppointments);
