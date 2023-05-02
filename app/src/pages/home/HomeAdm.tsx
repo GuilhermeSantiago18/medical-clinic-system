@@ -1,6 +1,7 @@
 import { Box, Button, Stack, TextField, Typography, FormControl, InputLabel, Select, MenuItem } from "@mui/material";
 import { useEffect, useState } from "react";
 import { SelectChangeEvent } from "@mui/material/Select";
+import { useRouter } from "next/router";
 
 type FormValues = {
   name: string;
@@ -8,6 +9,7 @@ type FormValues = {
 };
 
 const HomeAdm = () => {
+  const router = useRouter()
   const [doctors, setDoctors] = useState<string[]>([]);
   const [filteredDoctors, setFilteredDoctors] = useState<string[]>([]);
   const [nameFilter, setNameFilter] = useState('');
@@ -67,7 +69,7 @@ const HomeAdm = () => {
             <Typography key={doctor} variant="h6">
               {doctor}
             </Typography>
-            <Button variant="contained">Agenda</Button>
+            <Button variant="contained" onClick={() => router.push('/doctor')}>Agenda</Button>
           </>
         ))}
       </Box>
