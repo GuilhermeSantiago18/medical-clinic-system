@@ -1,4 +1,4 @@
-import DoctorCalendly from "./DoctorCalendly";
+import DoctorCalendly from "./[id]";
 
 
 

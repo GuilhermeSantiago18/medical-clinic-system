@@ -4,28 +4,48 @@ import { SelectChangeEvent } from "@mui/material/Select";
 import { useRouter } from "next/router";
 
 
+type DoctorValues = {
+  id: number;
+  name: string;
+  specialty: string;
+}
+
 const HomeAdm = () => {
   const router = useRouter()
-  const [doctors, setDoctors] = useState<string[]>([]);
-  const [filteredDoctors, setFilteredDoctors] = useState<string[]>([]);
+  const [doctors, setDoctors] = useState<DoctorValues[]>([]);
+  const [filteredDoctors, setFilteredDoctors] = useState<DoctorValues[]>([]);
   const [nameFilter, setNameFilter] = useState('');
   const [specialtyFilter, setSpecialtyFilter] = useState('');
+  const [specialties, setSpecialties] = useState<string[]>([]);
+
 
   useEffect(() => {
    //requisiçãoAPI obter todos os médicos
-    setDoctors(['Médico 4 (Cardiologista)', 'Médico 2 (Urologista)', 'Médico 3 (Endócrinologista)', 'Médico 4 (Endócrinologista)']);
+    setDoctors([
+      { id: 1, name: 'Médico 4', specialty: 'Cardiologista' },
+      { id: 2, name: 'Médico 2', specialty: 'Urologista' },
+      { id: 3, name: 'Médico 3', specialty: 'Endócrinologista' },
+      { id: 4, name: 'Médico 4', specialty: 'Endócrinologista' }
+    ]);
   }, []);
 
   useEffect(() => {
     let filtered = [...doctors];
     if (nameFilter) {
-      filtered = filtered.filter(doctor => doctor.toLowerCase().includes(nameFilter.toLowerCase()));
+      filtered = filtered.filter(doctor => doctor.name.toLowerCase().includes(nameFilter.toLowerCase()));
     }
     if (specialtyFilter) {
-      filtered = filtered.filter(doctor => doctor.toLowerCase().includes(specialtyFilter.toLowerCase()));
+      filtered = filtered.filter(doctor => doctor.specialty.toLowerCase().includes(specialtyFilter.toLowerCase()));
     }
     setFilteredDoctors(filtered);
   }, [doctors, nameFilter, specialtyFilter]);
+
+
+  useEffect(() => {
+    const uniqueSpecialties = [...new Set(doctors.map(doctor => doctor.specialty))];
+    setSpecialties(uniqueSpecialties);
+  }, [doctors]);
+
 
   const handleChangeNameFilter = (event: React.ChangeEvent<HTMLInputElement>) => {
     setNameFilter(event.target.value);
@@ -37,7 +57,7 @@ const HomeAdm = () => {
 
   return (
     <Box sx={{ mt: 4 }}>
-      <Stack spacing={2} sx={{ justifyContent: 'center', flexDirection: {xs: 'column', sm: 'row'}, alignItems: 'center' }}>
+      <Stack spacing={2} sx={{ flexDirection: "row", alignItems: 'center', width: "100%", justifyContent: "space-between" }}>
         <TextField
           fullWidth
           label="Nome do médico"
@@ -53,22 +73,27 @@ const HomeAdm = () => {
             label="Especialidade"
           >
             <MenuItem value="">Selecione</MenuItem>
-            <MenuItem value="cardiologista">Cardiologista</MenuItem>
-            <MenuItem value="urologista">Urologista</MenuItem>
-            <MenuItem value="endócrinologista">Endócrinologista</MenuItem>
+            {specialties.map((specialty, id) => (
+            <MenuItem key={id} value={specialty}>{specialty}</MenuItem>
+            ))}
           </Select>
         </FormControl>
       </Stack>
-      <Box sx={{ mt: 4, justifyContent: "center" }}>
+      <Stack sx={{ flexDirection: "column", alignItems: 'center', width: "100%", justifyContent: "space-between"}}>
         {filteredDoctors.map(doctor => (
           <>
-            <Typography key={doctor} variant="h6">
-              {doctor}
+          <Stack display="flex">
+            <Typography key={doctor.id} variant="h6">
+              {doctor.name}
             </Typography>
-            <Button variant="contained" onClick={() => router.push('/doctor')}>Agenda</Button>
+            <Typography variant="h6">
+              {doctor.specialty}
+            </Typography>
+            </Stack>
+            <Button variant="contained" onClick={() => router.push(`/doctor/${doctor.id}`)}>Agenda</Button>
           </>
         ))}
-      </Box>
+      </Stack>
     </Box>
   );
 };

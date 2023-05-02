@@ -16,7 +16,6 @@ export default function DoctorCalendly() {
     if (date) {
       const getAppointments = await getDoctorAppointments();
      const filterByDateAppointments = getAppointments.filter(appointment => appointment.date.toISOString().slice(0,10) === date.toISOString().slice(0,10))
-     console.log(filterByDateAppointments)
       setAppointments(filterByDateAppointments);
     }
   };
