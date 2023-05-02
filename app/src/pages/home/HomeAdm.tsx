@@ -3,10 +3,6 @@ import { useEffect, useState } from "react";
 import { SelectChangeEvent } from "@mui/material/Select";
 import { useRouter } from "next/router";
 
-type FormValues = {
-  name: string;
-  specialty: string;
-};
 
 const HomeAdm = () => {
   const router = useRouter()
