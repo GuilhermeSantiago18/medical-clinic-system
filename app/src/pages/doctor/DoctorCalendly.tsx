@@ -4,6 +4,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { Paper, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
 import { IAppointment } from "./IAppointment";
 import getDoctorAppointments from "./mock";
+import ScheduleTable from "@/components/ScheduleTable";
 
 
 export default function DoctorCalendly() {
@@ -11,7 +12,6 @@ export default function DoctorCalendly() {
   const [appointments, setAppointments] = useState<IAppointment[]>([]);
 
   const handleDateChange = async (date: Date | null) => {
-    console.log(date.toISOString())
     setSelectedDate(date);
     if (date) {
       const getAppointments = await getDoctorAppointments(date);
@@ -31,26 +31,7 @@ export default function DoctorCalendly() {
         format="DD/MM/YYYY"
       />
       </Stack>
-      <TableContainer component={Paper}>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell>Hora</TableCell>
-              <TableCell>Paciente</TableCell>
-              <TableCell>Motivo</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {appointments.map((appointment) => (
-              <TableRow key={appointment.time}>
-                <TableCell>{appointment.time}</TableCell>
-                <TableCell>{appointment.patient}</TableCell>
-                <TableCell>{appointment.reason}</TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+      <ScheduleTable appointments={appointments} />
     </LocalizationProvider>
   );
 }
