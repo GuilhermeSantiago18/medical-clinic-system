@@ -1,10 +1,11 @@
-import { Button, Grid, Stack, TextField, Typography } from "@mui/material";
+import { Box, Button, Grid, Stack, TextField, Typography } from "@mui/material";
 import { useForm } from "react-hook-form";
-import imgCardioCentro from "src/images/cardiocentro.png";
-import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../context/AuthContext";
+import doctor from '../../images/doctor.avif'
+import Image from "next/image";
+
 
 type FormValues = {
   email: string;
@@ -40,42 +41,46 @@ const LoginForm = () => {
   }, [router, session]);
 
   return (
+    <>
     <Grid
       container
       spacing={2}
-      direction="column"
+      direction="row"
       alignItems="center"
       justifyContent="center"
-      minHeight="80vh"
+      minHeight="100vh"
+      bgcolor="#f8f9fa"
     >
-      <Image src={imgCardioCentro} alt="Cardio-Centro" />
-      <Grid item>
+       <Box component={Image} src={doctor} alt="doctor" maxWidth="50%" />
+       <Stack direction="column" width="50%" alignItems="center">
+       <Typography  color="#adb5bd" variant="h2" alignSelf='center'>CARDIOCENTRO</Typography>
+       <Stack display="flex" flexDirection="column" width="30%" alignItems="center" spacing={1}>
         <TextField
           label="Email"
           variant="outlined"
           placeholder="Digite seu email"
+          fullWidth
           {...register("email", { required: true })}
-        />
-        {errors.email && <Typography>Campo obrigatório</Typography>}
-      </Grid>
-
-      <Grid item>
+          />
+        {errors.email && <Typography>Campo obrigatório</Typography>} 
         <TextField
           label="Senha"
           type="password"
           variant="outlined"
+          fullWidth
           placeholder="Digite sua senha"
           {...register("password", { required: true })}
         />
         {errors.password && <Typography>Campo obrigatório</Typography>}
-      </Grid>
 
-      <Grid item>
-        <Button variant="contained" onClick={handleSubmit(onSubmit)}>
+        <Button variant="contained" fullWidth sx={{color: "white"}} onClick={handleSubmit(onSubmit)}>
           Entrar
         </Button>
-      </Grid>
+      </Stack>
+      </Stack>
+ 
     </Grid>
+    </>
   );
 };
 
