@@ -1,9 +1,5 @@
 import { useState } from "react";
-import {
-  DatePicker,
-  LocalizationProvider,
-  TimePicker,
-} from "@mui/x-date-pickers";
+import { DatePicker, LocalizationProvider, TimePicker } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { Button, Stack, TextField } from "@mui/material";
 import { IAppointment } from "./interface/IAppointment";
@@ -14,9 +10,9 @@ export default function DoctorCalendly() {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [appointments, setAppointments] = useState<IAppointment[]>([]);
   const [showForm, setShowForm] = useState(false);
-  const [patientName, setPatientName] = useState("");
-  const [appointmentTime, setAppointmentTime] = useState<Date | string>("");
-  const [appointmentReason, setAppointmentReason] = useState("");
+  const [patientName, setPatientName] = useState('');
+  const [appointmentTime, setAppointmentTime] = useState<Date | string>('');
+  const [appointmentReason, setAppointmentReason] = useState('');
 
   const handleDateChange = async (date: Date | null) => {
     setSelectedDate(date);

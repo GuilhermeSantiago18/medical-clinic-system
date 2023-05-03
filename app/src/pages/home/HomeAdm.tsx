@@ -1,4 +1,4 @@
-import { Box, Button, Stack, TextField, Typography, FormControl, InputLabel, Select, MenuItem } from "@mui/material";
+import { Box, Button, Stack, TextField, Typography, FormControl, InputLabel, Select, MenuItem, Grid } from "@mui/material";
 import { useEffect, useState } from "react";
 import { SelectChangeEvent } from "@mui/material/Select";
 import { useRouter } from "next/router";
@@ -56,8 +56,13 @@ const HomeAdm = () => {
   };
 
   return (
-    <Box sx={{ mt: 4 }}>
-      <Stack spacing={2} sx={{ flexDirection: "row", alignItems: 'center', width: "100%", justifyContent: "space-between" }}>
+    <Grid container 
+    p={2}
+    rowGap={1}
+    justifyContent="center"
+    alignItems="center"
+    >
+      <Stack>
         <TextField
           fullWidth
           label="Nome do médico"
@@ -79,22 +84,19 @@ const HomeAdm = () => {
           </Select>
         </FormControl>
       </Stack>
-      <Stack sx={{ flexDirection: "column", alignItems: 'center', width: "100%", justifyContent: "space-between"}}>
+      <Stack sx={{ flexDirection: "column", alignItems: 'center', width: "100%", p: 2}}>
         {filteredDoctors.map(doctor => (
           <>
-          <Stack display="flex">
+          <Stack sx={{flexDirection: "row", width: "30%", justifyContent: "space-between", margin: 2}}>
             <Typography key={doctor.id} variant="h6">
-              {doctor.name}
+              {`${doctor.name} - Especialidade: ${doctor.specialty}`}
             </Typography>
-            <Typography variant="h6">
-              {doctor.specialty}
-            </Typography>
-            </Stack>
             <Button variant="contained" onClick={() => router.push(`/doctor/${doctor.id}`)}>Agenda</Button>
+            </Stack>
           </>
         ))}
       </Stack>
-    </Box>
+    </Grid>
   );
 };
 
