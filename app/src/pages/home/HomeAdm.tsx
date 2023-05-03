@@ -2,6 +2,7 @@ import { Box, Button, Stack, TextField, Typography, FormControl, InputLabel, Sel
 import { useEffect, useState } from "react";
 import { SelectChangeEvent } from "@mui/material/Select";
 import { useRouter } from "next/router";
+import Header from "@/components/Header";
 
 
 type DoctorValues = {
@@ -56,13 +57,15 @@ const HomeAdm = () => {
   };
 
   return (
+    <>
+    <Header />
     <Grid container 
     p={2}
     rowGap={1}
     justifyContent="center"
     alignItems="center"
     >
-      <Stack>
+      <Stack spacing={1}>
         <TextField
           fullWidth
           label="Nome do médico"
@@ -97,6 +100,7 @@ const HomeAdm = () => {
         ))}
       </Stack>
     </Grid>
+    </>
   );
 };
 

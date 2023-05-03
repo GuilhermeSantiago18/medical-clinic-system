@@ -88,7 +88,7 @@ export default function DoctorCalendly() {
             </Button>
           </Stack>
         </form>
-      ) : (
+      ) : selectedDate  && (
         <Button variant="contained" onClick={() => setShowForm(true)}>
           Inserir novo Paciente
         </Button>

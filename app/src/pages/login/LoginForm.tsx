@@ -1,4 +1,4 @@
-import { Box, Button, Grid, TextField, Typography } from "@mui/material";
+import { Button, Grid, Stack, TextField, Typography } from "@mui/material";
 import { useForm } from "react-hook-form";
 import imgCardioCentro from "src/images/cardiocentro.png";
 import Image from "next/image";
@@ -14,7 +14,7 @@ type FormValues = {
 const LoginForm = () => {
   const router = useRouter();
   const [session, setSession] = useState(false);
-  const { setUserName } = useAuth();
+  const { setUserName } = useAuth();  
   const {
     register,
     handleSubmit,
@@ -49,7 +49,6 @@ const LoginForm = () => {
       minHeight="80vh"
     >
       <Image src={imgCardioCentro} alt="Cardio-Centro" />
-
       <Grid item>
         <TextField
           label="Email"

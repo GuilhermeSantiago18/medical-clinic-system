@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "../../context/AuthContext"
 import ScheduleTable from "@/components/ScheduleTable";
+import { Typography } from "@mui/material";
+import Header from "@/components/Header";
 
 interface Schedule {
   time: string;
@@ -15,7 +17,6 @@ const YEAR: string = now.getFullYear().toString();
 
 export default function HomeDoctor() {
   const [appointments, setAppointments] = useState<Schedule[]>([]);
-  const {userName} = useAuth()
 
   useEffect(() => {
     const fetchSchedules: Schedule[] = [
@@ -41,8 +42,8 @@ export default function HomeDoctor() {
 
   return (
     <div>
-      <h1>Bem-vindo, {userName}!</h1>
-      <h2>Agendamentos do dia:{`${DAY}/${MONTH}/${YEAR}`}</h2>
+      <Header />
+      <Typography>Agendamentos do dia:{`${DAY}/${MONTH}/${YEAR}`}</Typography>
       <ScheduleTable appointments={appointments} />
     </div>
   );
