@@ -5,8 +5,9 @@ interface Props {
 }
 
 export default function ScheduleTable({ appointments }: Props) {
+  if (appointments.length < 1) return null
   return (
-    <TableContainer component={Paper} sx={{mt: 8}}>
+    <TableContainer component={Paper}>
       <Table>
         <TableHead>
           <TableRow>
