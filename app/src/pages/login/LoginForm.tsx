@@ -1,4 +1,4 @@
-import { Box, Button, Grid, Stack, TextField, Typography } from "@mui/material";
+import { Box, Button, Grid, Paper, Stack, TextField, Typography } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -51,10 +51,11 @@ const LoginForm = () => {
       minHeight="100vh"
       bgcolor="#f8f9fa"
     >
-       <Box component={Image} src={doctor} alt="doctor" maxWidth="50%" />
+       <Box component={Image} src={doctor} alt="doctor" maxWidth="50%" sx={{objectFit: "cover"}} />
        <Stack direction="column" width="50%" alignItems="center">
-       <Typography  color="#adb5bd" variant="h2" alignSelf='center'>CARDIOCENTRO</Typography>
-       <Stack display="flex" flexDirection="column" width="30%" alignItems="center" spacing={1}>
+        <Paper>
+       <Typography bgcolor="#f8f9fa" color="#adb5bd" variant="h3" mb={2} alignSelf='center'>CARDIOCENTRO</Typography>
+       <Stack display="flex" flexDirection="column" alignItems="center" spacing={1}>
         <TextField
           label="Email"
           variant="outlined"
@@ -77,6 +78,7 @@ const LoginForm = () => {
           Entrar
         </Button>
       </Stack>
+      </Paper>
       </Stack>
  
     </Grid>
