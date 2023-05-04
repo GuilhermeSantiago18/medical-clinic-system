@@ -12,7 +12,7 @@ export default function DoctorCalendly() {
   const [appointments, setAppointments] = useState<IAppointment[]>([]);
   const [showForm, setShowForm] = useState(false);
   const [patientName, setPatientName] = useState('');
-  const [appointmentTime, setAppointmentTime] = useState<Date | string>('10:30');
+  const [appointmentTime, setAppointmentTime] = useState<Date | string>('');
   const [appointmentReason, setAppointmentReason] = useState('');
 
   const handleDateChange = async (date: Date | null) => {

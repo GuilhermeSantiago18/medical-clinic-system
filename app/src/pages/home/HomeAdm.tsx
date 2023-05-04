@@ -81,7 +81,7 @@ const HomeAdm = () => {
           </Select>
         </FormControl>
       </Stack>
-      <Grid container rowGap={2} columnGap={2} justifyContent="center">
+      <Grid container rowGap={2} columnGap={2} justifyContent="center" mt={4}>
         {filteredDoctors.map(doctor => (
           <>
           <Grid item md={6} sx={{display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
