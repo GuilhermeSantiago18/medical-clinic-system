@@ -5,14 +5,15 @@ interface Props {
 }
 
 export default function ScheduleTable({ appointments }: Props) {
+  if (appointments.length < 1) return null
   return (
     <TableContainer component={Paper}>
       <Table>
         <TableHead>
           <TableRow>
-            <TableCell>Hora</TableCell>
-            <TableCell>Paciente</TableCell>
-            <TableCell>Motivo</TableCell>
+            <TableCell sx={{fontWeight: 'bold'}}>Hora</TableCell>
+            <TableCell sx={{fontWeight: 'bold'}}>Paciente</TableCell>
+            <TableCell sx={{fontWeight: 'bold'}}>Motivo</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

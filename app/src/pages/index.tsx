@@ -1,12 +1,11 @@
-import LoginForm from "./login/LoginForm";
+import LoginPage from "./login/LoginPage";
+
 
 
 
 
 export default function MyApp() {
   return (
-    <>
-     <LoginForm />
-    </>
+     <LoginPage />
   )
 }
