@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { SelectChangeEvent } from "@mui/material/Select";
 import { useRouter } from "next/router";
 import Header from "@/components/Header";
+import MainContainer from "@/components/MainContainer";
 
 
 type DoctorValues = {
@@ -57,15 +58,8 @@ const HomeAdm = () => {
   };
 
   return (
-    <>
-    <Header />
-    <Grid container 
-    p={2}
-    rowGap={1}
-    justifyContent="center"
-    alignItems="center"
-    >
-      <Stack spacing={1}>
+    <MainContainer sx={{justifyContent: "flex-start"}}>
+      <Stack spacing={1} mt={12}>
         <TextField
           fullWidth
           label="Nome do médico"
@@ -87,20 +81,19 @@ const HomeAdm = () => {
           </Select>
         </FormControl>
       </Stack>
-      <Stack sx={{ flexDirection: "column", alignItems: 'center', width: "100%", p: 2}}>
+      <Grid container rowGap={2} columnGap={2} justifyContent="center">
         {filteredDoctors.map(doctor => (
           <>
-          <Stack sx={{flexDirection: "row", width: "30%", justifyContent: "space-between", margin: 2}}>
+          <Grid item md={6} sx={{display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
             <Typography key={doctor.id} variant="h6">
               {`${doctor.name} - Especialidade: ${doctor.specialty}`}
             </Typography>
             <Button variant="contained" onClick={() => router.push(`/doctor/${doctor.id}`)}>Agenda</Button>
-            </Stack>
+            </Grid>
           </>
         ))}
-      </Stack>
-    </Grid>
-    </>
+      </Grid>
+      </MainContainer>
   );
 };
 

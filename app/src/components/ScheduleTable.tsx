@@ -6,13 +6,13 @@ interface Props {
 
 export default function ScheduleTable({ appointments }: Props) {
   return (
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} sx={{mt: 8}}>
       <Table>
         <TableHead>
           <TableRow>
-            <TableCell>Hora</TableCell>
-            <TableCell>Paciente</TableCell>
-            <TableCell>Motivo</TableCell>
+            <TableCell sx={{fontWeight: 'bold'}}>Hora</TableCell>
+            <TableCell sx={{fontWeight: 'bold'}}>Paciente</TableCell>
+            <TableCell sx={{fontWeight: 'bold'}}>Motivo</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
