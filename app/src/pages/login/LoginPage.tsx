@@ -48,11 +48,11 @@ const LoginPage = () => {
       <Stack direction="column" alignItems="center" justifyContent="center">
         <Typography
           color="primary"
-          mb={18}
+          mb={8}
           variant="h3"
           sx={{ fontFamily: "Montserrat" }}
         >
-          CARDIOCENTRO SYSTEM
+          CARDIOCENTRO
         </Typography>
         <Stack
           display="flex"

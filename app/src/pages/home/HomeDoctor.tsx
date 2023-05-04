@@ -43,7 +43,7 @@ export default function HomeDoctor() {
 
   return (
     <MainContainer sx={{justifyContent: "flex-start" }}>
-      <Stack flexDirection="row" alignItems="center" mt={10}>
+      <Stack flexDirection="row" alignItems="center" mt={10} mb={4} sx={{textAlign: "center"}}>
       <IconButton sx={{mr: 2}}><NavigateBeforeIcon color="primary"/></IconButton>
       <Typography  variant="h6">Agendamentos do dia: {`${DAY}/${MONTH}/${YEAR}`}</Typography>
       <IconButton  sx={{ml: 2}}><NavigateNextIcon color="primary"/></IconButton>
